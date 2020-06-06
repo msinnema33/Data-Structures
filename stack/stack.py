@@ -50,9 +50,24 @@ class Stack:
         self.storage = LinkedList()
 
     def __len__(self):
-        return len(self.storage)
-        
+        temp = self.head
+        count = 0
 
+        while (temp):
+            count += 1
+            temp = temp.next
+        return count
+        # return len(self.storage)
+
+    def getCount(self):
+        temp = self.head
+        count = 0
+
+        while (temp):
+            count += 1
+            temp = temp.next
+        return count
+        
     def push(self, value):
         # increase the size of the queue by one
         self.size += 1
