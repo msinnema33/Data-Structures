@@ -50,17 +50,17 @@ class LinkedList:
         # remove from the list
         # change the pointer of the old node tail to none
         # if the list has no nodes
-        if self.head == None:
+        if self.tail == None:
             return None
         # if the list has 1 node (head and tail)    
-        if self.head.next_node == None:
+        if self.tail.next_node == None:
             return None
         # if the list has more than 1 node    
-        second_last = self.head
+        second_last = self.tail
         while(second_last.next_node.next_node):
             second_last = second_last.next_node
         second_last.next_node = None 
-        return self.head
+        return self.tail
 
     def contains(self, target):
         # assign the value of the current head to variable current_node

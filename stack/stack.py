@@ -50,14 +50,14 @@ class Stack:
         self.storage = LinkedList()
 
     def __len__(self):
-        temp = self.head
-        count = 0
+        # temp = self.head
+        # count = 0
 
-        while (temp):
-            count += 1
-            temp = temp.next
-        return count
-        # return len(self.storage)
+        # while (temp):
+        #     count += 1
+        #     temp = temp.next
+        # return count
+        return self.size
 
     def getCount(self):
         temp = self.head
