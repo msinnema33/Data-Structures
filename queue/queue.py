@@ -34,57 +34,53 @@ from singly_linked_list import LinkedList
 #initial code
 
 ### Queue with an array
-# class Queue:
-#     def __init__(self):
-#         self.size = 0
-#         # self.storage = ?
-    
-#     def __len__(self):
-#         pass
-
-#     def enqueue(self, value):
-#         self.size +=1
-        # add to the back of the array 
-        # self.storage.append(value)  
-
-#     def dequeue(self):
-#          # if the size of the queue is greater than one, decrement the size
-        # if self.size > 0:
-        #     self.size -= 1
-        #     # remove from index[0] from the array
-        #     # return self.storage.remove_head()
-        # else:
-        #     # if the size of the queue is less than or equal to zero, return None
-        #     return None
-
-##  how do I move all items 1 position forward in the list/array?? (after line 29)
-
-
-### End queue with an array
-
-
-### Queue with a LinkedList
-
 class Queue:
     def __init__(self):
         self.size = 0
-        self.storage = LinkedList()
+        self.storage = []
     
     def __len__(self):
-        return self.size
+        return self.size    # or len(self.storage)
 
     def enqueue(self, value):
-        # increase the size of the queue by one
-        self.size += 1
-        # invoke "add_to_tail" on self.storage, passing in (item) as an argument
-        self.storage.add_to_tail(value)
+        self.size +=1
+        # add to the back of the array 
+        self.storage.append(value)  
 
     def dequeue(self):
-        # if the size of the queue is greater than one, decrement the size
+         # if the size of the queue is greater than one, decrement the size
         if self.size > 0:
             self.size -= 1
-            # invoke "remove_head" on self.storage
-            return self.storage.remove_head()
+            # remove from index[0] from the array
+            return self.storage.pop(0)
         else:
-            # if the size of the queue is less than or equal to zero, return None
+            # if the size of the queue is zero, return None
             return None
+
+### End queue with an array
+
+### Queue with a LinkedList
+
+# class Queue:
+#     def __init__(self):
+#         self.size = 0
+#         self.storage = LinkedList()
+    
+#     def __len__(self):
+#         return self.size
+
+#     def enqueue(self, value):
+#         # increase the size of the queue by one
+#         self.size += 1
+#         # invoke "add_to_tail" on self.storage, passing in (item) as an argument
+#         self.storage.add_to_tail(value)
+
+#     def dequeue(self):
+#         # if the size of the queue is greater than one, decrement the size
+#         if self.size > 0:
+#             self.size -= 1
+#             # invoke "remove_head" on self.storage
+#             return self.storage.remove_head()
+#         else:
+#             # if the size of the queue is less than or equal to zero, return None
+#             return None
