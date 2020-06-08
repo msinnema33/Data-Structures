@@ -46,21 +46,39 @@ class LinkedList:
             return None
 
     def remove_tail(self):
-        pass
-        # remove from the list
-        # change the pointer of the old node tail to none
-        # if the list has no nodes
-        if self.tail == None:
-            return None
-        # if the list has 1 node (head and tail)    
-        if self.tail.next_node == None:
-            return None
-        # if the list has more than 1 node    
-        second_last = self.tail
-        while(second_last.next_node.next_node):
-            second_last = second_last.next_node
-        second_last.next_node = None 
-        return self.tail
+                            # remove from the list
+                            # change the pointer of the old node tail to none
+                            # if the list has no nodes
+                            # if self.head == None:
+                            #     return None
+                            # # if the list has 1 node (head and tail)    
+                            # if self.tail.next_node == None:
+                            #     return None
+                            # # if the list has more than 1 node    
+                            # second_last = self.tail
+                            # while(second_last.next_node.next_node):
+                            #     second_last = second_last.next_node
+                            # second_last.next_node = None 
+                            # return self.tail
+        if not self.head:
+                return None
+
+        if self.head is self.tail:
+            value = self.head.get_value()
+            self.head = None
+            self.tail = None
+            return value
+
+        current = self.head
+        
+        while current.get_next() is not self.tail:
+            current = current.get_next()
+
+        value = self.tail.get_value()
+        self.tail = current
+        return value                    
+
+
 
     def contains(self, target):
         # assign the value of the current head to variable current_node
