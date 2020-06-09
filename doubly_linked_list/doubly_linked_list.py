@@ -51,8 +51,8 @@ class DoublyLinkedList:
         self.length += 1
 
         if not self.head and not self.tail:
-            new_node = self.head
-            new_node = self.tail
+            self.head = new_node  ### had new_node and self.head reversed
+            self.tail = new_node
         else:
             new_node.next = self.head
             self.head.prev = new_node
@@ -62,7 +62,10 @@ class DoublyLinkedList:
     current head's next node the new head of the List.
     Returns the value of the removed Node."""
     def remove_from_head(self):
-        value = self.head.value  # have a logic error in here and delete function
+        # check for head
+        if not self.head:
+            return None
+        value = self.head.value 
         self.delete(self.head)
         return value
 
@@ -73,9 +76,9 @@ class DoublyLinkedList:
         new_node = ListNode(value)
         self.length += 1
 
-        if not self.head:
-            new_node = self.head
-            new_node = self.tail
+        if not self.head:  ### had new_node and self.head reversed
+            self.head = new_node
+            self.tail = new_node
         else:
             new_node.prev = self.tail
             self.tail.next = new_node
@@ -84,7 +87,10 @@ class DoublyLinkedList:
     """Removes the List's current tail node, making the 
     current tail's previous node the new tail of the List.
     Returns the value of the removed Node."""
-    def remove_from_tail(self):  # have a logic function here and in delete function
+    def remove_from_tail(self):  
+        # check for tail
+        if not self.tail:
+            return None
         value = self.tail.value
         self.delete(self.tail)
         return value
@@ -107,7 +113,7 @@ class DoublyLinkedList:
 
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
-    def delete(self, node):  # have a logic here and in remove from head and remove from tail
+    def delete(self, node):  
         # list is empty
         if not self.head and not self.tail:
             return None
