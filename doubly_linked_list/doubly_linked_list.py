@@ -113,7 +113,7 @@ class DoublyLinkedList:
             return None
         self.length -= 1
         # Only node
-        if self.head is self.tail:
+        if self.head == self.tail:
             self.head = None
             self.tail = None
         # it's the head
