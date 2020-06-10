@@ -1,3 +1,4 @@
+from collections import deque
 """
 Binary search trees are a data structure that enforce an ordering over 
 the data they store. That ordering in turn makes it a lot more efficient 
@@ -17,20 +18,97 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        if value < self.value:
+            if not self.left:
+                # now we can park our value
+                self.left = BSTNode(value)
+            else:
+                # no parking on this level do down one level
+                self.left.insert(value)
+
+        else:
+            if not self.right:
+                self.right = BSTNode(value)
+            else: 
+                self.right.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
-    def contains(self, target):
-        pass
+    def contains(self, target):  ###### This is recursive!!
+        # start at root compare target against self
+        if target == self.value:
+            return True
+
+        if target < self.value:
+            if not self.left: ## can't go left - there isn't a Node there
+                return False ## -- means does not contain.
+            return self.left.contains(target)
+        else:
+            if not self.right: ## can't go right - there isn't a Node there
+                return False ## -- means does not contain
+            return self.right.contains(target)
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        if not self.right:
+            return self.value
+        return self.right.get_max()
 
+        ###### Iterative solution for get_max ##########
+        '''
+    def iterative_get_max(self):
+        current_max = self.value
+
+        current = self
+
+        while current is not None:
+            if current.value > current_max:
+                current_max = current.value
+
+            current = current.right
+        return current_max
+        '''
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        # call the function on root
+        fn(self.value)
+        # pass to left child
+        if self.left:
+            self.left.for_each(fn)
+        #pass to the right child
+        if self.right:
+            self.right.for_each(fn)    
+
+        ###### Iterative solution for for_each ##########    
+        '''
+    def iterative_for_each(self, fn):
+        stack = []
+
+        stack.append(self) # add root node
+
+        while len(stack) >= 0:
+            current = stack.pop()
+            if current.right:
+                stack.append(current.right)
+            if current.left:
+                stack.append(current.left)
+            fn(current.value)
+        '''
+    
+        '''
+    def breadth_first_for_each(self, fn):
+        queue = deque()
+
+        queue.append(self) # add root node
+
+        while len(queue) >= 0:
+            current = queue.popleft()
+            if current.right:
+                queue.append(current.right)
+            if current.left:
+                queue.append(current.left)
+            fn(current.value)
+        '''
 
     # Part 2 -----------------------
 
