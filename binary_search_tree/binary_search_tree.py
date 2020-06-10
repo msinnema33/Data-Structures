@@ -49,7 +49,7 @@ class BSTNode:
             return self.right.contains(target)
 
     # Return the maximum value found in the tree
-    def get_max(self):
+    def get_max(self): #recursive 
         if not self.right:
             return self.value
         return self.right.get_max()
@@ -81,7 +81,7 @@ class BSTNode:
 
         ###### Iterative solution for for_each ##########    
         '''
-    def iterative_for_each(self, fn):
+    def iterative_for_each(self, fn): # depth first
         stack = []
 
         stack.append(self) # add root node
@@ -96,7 +96,7 @@ class BSTNode:
         '''
     
         '''
-    def breadth_first_for_each(self, fn):
+    def breadth_first_for_each(self, fn): # breadth first
         queue = deque()
 
         queue.append(self) # add root node
