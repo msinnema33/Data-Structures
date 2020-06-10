@@ -86,7 +86,7 @@ class BSTNode:
 
         stack.append(self) # add root node
 
-        while len(stack) >= 0:
+        while len(stack) > 0:
             current = stack.pop()
             if current.right:
                 stack.append(current.right)
@@ -101,7 +101,7 @@ class BSTNode:
 
         queue.append(self) # add root node
 
-        while len(queue) >= 0:
+        while len(queue) > 0:
             current = queue.popleft()
             if current.right:
                 queue.append(current.right)
@@ -115,16 +115,21 @@ class BSTNode:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
+        # use for_each where fn appends to a list 
+        # sort list
+        # print list
         pass
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
+        # use breadth_first_for_each where fn = print(current.value)
         pass
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
+        # use iterative_for_each where fn = print(current.value)
         pass
 
     # Stretch Goals -------------------------
