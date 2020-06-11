@@ -25,7 +25,6 @@ class BSTNode:
             else:
                 # no parking on this level do down one level
                 self.left.insert(value)
-
         else:
             if not self.right:
                 self.right = BSTNode(value)
@@ -38,7 +37,6 @@ class BSTNode:
         # start at root compare target against self
         if target == self.value:
             return True
-
         if target < self.value:
             if not self.left: ## can't go left - there isn't a Node there
                 return False ## -- means does not contain.
@@ -131,6 +129,8 @@ class BSTNode:
         while i < len(printList):
             print(printList[i])
             i = i + 1
+        # print(val for val in printlist[val])
+        # print(printList)    
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
@@ -170,7 +170,22 @@ class BSTNode:
 
     # Print Pre-order recursive DFT
     def pre_order_dft(self, node):
-        pass
+        printList = []
+        # use for_each logic fn printList.append(current.value) to a list
+        printList.append(self.value)
+       # pass to left child
+        if self.left:
+            printList.append(self.value)
+        #pass to the right child
+        if self.right:
+            printList.append(self.value)
+        # # sort list
+        # printList.sort()
+        # print list
+        i = 1
+        while i < len(printList):
+            print(printList[i])
+            i = i + 1
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
