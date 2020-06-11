@@ -109,37 +109,19 @@ class BSTNode:
         '''
 
     # Part 2 -----------------------
-
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        printList = []
-        # use for_each logic fn printList.append(current.value) to a list
-        printList.append(self.value)
-        # pass to left child
-        if self.left:
-            printList.append(self.value)
-        #pass to the right child
-        if self.right:
-            printList.append(self.value)
-        # sort list
-        printList.sort()
-        # print list
-        i = 1
-        while i < len(printList):
-            print(printList[i])
-            i = i + 1
-        # print(val for val in printlist[val])
-        # print(printList)    
-
-    # Print the value of every node, starting with the given node,
-    # in an iterative breadth first traversal
+        if node == None:
+            return
+        self.in_order_print(node.left)
+        print(node.value)
+        self.in_order_print(node.right)
+        
     def bft_print(self, node):
         # use breadth_first_for_each where fn = print(current.value)
         queue = deque()
-
         queue.append(self) # add root node
-
         while len(queue) > 0:
             current = queue.popleft()
             if current.right:
@@ -148,15 +130,10 @@ class BSTNode:
                 queue.append(current.left)
             print(current.value)
         
-
-    # Print the value of every node, starting with the given node,
-    # in an iterative depth first traversal
     def dft_print(self, node):
         # use iterative_for_each where fn = print(current.value)
         stack = []
-
         stack.append(self) # add root node
-
         while len(stack) > 0:
             current = stack.pop()
             if current.right:
@@ -170,41 +147,17 @@ class BSTNode:
 
     # Print Pre-order recursive DFT
     def pre_order_dft(self, node):
-        printList = []
-        # use for_each logic fn printList.append(current.value) to a list
-        printList.append(self.value)
-       # pass to left child
-        if self.left:
-            printList.append(self.value)
-        #pass to the right child
-        if self.right:
-            printList.append(self.value)
-        # # sort list
-        # printList.sort()
-        # print list
-        i = 1
-        while i < len(printList):
-            print(printList[i])
-            i = i + 1
+        if node == None:
+            return
+        print(node.value)
+        self.pre_order_dft(node.left)
+        self.pre_order_dft(node.right)
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
-        printList = []
-        # use for_each logic fn printList.append(current.value) to a list
-        printList.append(self.value)
-       
-        #pass to the right child
-        if self.right:
-            printList.append(self.value)
-
-        # pass to left child
-        if self.left:
-            printList.append(self.value)
-        # # sort list
-        # printList.sort()
-        # print list
-        i = 1
-        while i < len(printList):
-            print(printList[i])
-            i = i + 1
+        if node == None:
+            return
+        self.post_order_dft(node.left)
+        self.post_order_dft(node.right)
+        print(node.value)
         
