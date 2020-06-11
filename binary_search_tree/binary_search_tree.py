@@ -174,4 +174,22 @@ class BSTNode:
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
-        pass
+        printList = []
+        # use for_each logic fn printList.append(current.value) to a list
+        printList.append(self.value)
+       
+        #pass to the right child
+        if self.right:
+            printList.append(self.value)
+
+        # pass to left child
+        if self.left:
+            printList.append(self.value)
+        # # sort list
+        # printList.sort()
+        # print list
+        i = 1
+        while i < len(printList):
+            print(printList[i])
+            i = i + 1
+        
