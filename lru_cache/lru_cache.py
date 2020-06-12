@@ -1,4 +1,8 @@
-class LRUCache:
+import sys
+sys.path.append("../doubly_linked_list") 
+from doubly_linked_list import DoublyLinkedList
+
+class LRUCache:  
     """
     Our LRUCache class keeps track of the max number of nodes it
     can hold, the current number of nodes it is holding, a doubly-
@@ -7,7 +11,10 @@ class LRUCache:
     to every node stored in the cache.
     """
     def __init__(self, limit=10):
-        pass
+        self.limit = limit
+        # self.size = 0 # maybe use len of dll
+        self.order = DoublyLinkedList()
+        self.storage = dict()
 
     """
     Retrieves the value associated with the given key. Also
@@ -17,7 +24,17 @@ class LRUCache:
     key-value pair doesn't exist in the cache.
     """
     def get(self, key):
-        pass
+        # key is not in cache - return none
+        if key not in self.storage:
+            return None
+
+        else:
+            # key is in cache
+            # move to tail (most recently used)
+            node = self.storage[key]
+            self.order.move_to_end(node)
+            # return value
+            return node.value[1]
 
     """
     Adds the given key-value pair to the cache. The newly-
@@ -30,4 +47,25 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
-        pass
+        # key already exists
+        if key in self.storage:
+            # overwrite value
+            node = self.storage[key]
+            node.value = (key, value)
+            # move to tail
+            self.order.move_to_end(node)
+            return
+       
+       # size is at limit
+        if len(self.order) == self.limit:
+            # evict oldest
+            index_of_oldest = self.order.head.value[0]
+            del self.storage[index_of_oldest]
+            self.order.remove_from_head()
+            # add to tail 
+        #     # size is not at limit
+        # if len(self.order) < self.limit:
+        # add to order
+        self.order.add_to_tail((key, value))
+        # add to storage
+        self.storage[key] = self.order.tail 

@@ -10,16 +10,83 @@ return elements in Last In First Out order.
 3. What is the difference between using an array vs. a linked list when 
    implementing a Stack?
 """
+'''
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+To run any tests you must be in the stack folder in the terminal below!!!!!!!!!!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+'''
+
+#sys import for mapping to linked list
+import sys
+sys.path.append("../singly_linked_list") 
+from singly_linked_list import LinkedList
+
+
+# ###implement using an array
+# 
+# class Stack:
+#     def __init__(self):
+#         self.size = 0
+#         self.storage = []
+
+#     def __len__(self):
+#         return self.size
+        
+#     def push(self, value):
+#         self.size += 1
+#         self.storage.append(value)
+
+#     def pop(self):
+#         if self.size > 0:  #or len(self.storage)
+#             self.size -= 1
+#             return self.storage.pop()
+#         else:
+#             return None
+
+### End with array
+
+### Implement using a linked list
+
 class Stack:
     def __init__(self):
         self.size = 0
-        # self.storage = ?
+        self.storage = LinkedList()
 
     def __len__(self):
-        pass
+        # temp = self.head
+        # count = 0
 
+        # while (temp):
+        #     count += 1
+        #     temp = temp.next
+        # return count
+        return self.size
+
+    def getCount(self):
+        temp = self.head
+        count = 0
+
+        while (temp):
+            count += 1
+            temp = temp.next
+        return count
+        
     def push(self, value):
-        pass
+        # increase the size of the queue by one
+        self.size += 1
+        # invoke "add_to_tail" on self.storage, passing in (item) as an argument
+        self.storage.add_to_tail(value)
 
     def pop(self):
-        pass
+        ## remove from the top(tail) of the stack
+        if self.size > 0:
+            self.size -= 1
+            # invoke "remove_head" on self.storage
+            return self.storage.remove_tail()
+        else:
+            # if the size of the queue is less than or equal to zero, return None
+            return None
+
+        
